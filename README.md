@@ -116,7 +116,7 @@ Example locale entries in the `package.json`:
 7. Compile your application and install!
 
 You can easily test your translations by commenting line 20 and uncommenting
-line 19 of `localize.c`, replacing "es" with a locale you are translating.
+line 19 of `localize.c`, replacing "es_ES" with a locale you are translating.
 
 ## Add More Languages
 
