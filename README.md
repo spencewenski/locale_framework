@@ -1,7 +1,7 @@
 # locale_framework
 
-Minimal framework to support locale features in Pebble apps, using 
-[`i18n_get_system_locale()`](http://developer.getpebble.com/docs/c/group___internationalization.html) 
+Minimal framework to support locale features in Pebble apps, using
+[`i18n_get_system_locale()`](http://developer.getpebble.com/docs/c/group___internationalization.html)
 in Pebble Firmware 2.8+ to discover the system locale and select the correct
 text to display.
 
@@ -9,7 +9,7 @@ text to display.
 
 ### Setting Up Your Project
 
-* Add `localize.h`, `localize.c` and `hash.h` to your project's `src` directory.  
+* Add `localize.h`, `localize.c` and `hash.h` to your project's `src` directory.
 
 * Add `locale_english.bin`, `locale_french.bin`, `locale_spanish.bin` and
   `locale_german.bin` to your app resources.
@@ -34,7 +34,7 @@ int main(void) {
 * For all strings that you wish to localize, add `_()` around them.
 
 ```c
-_("Breakfast Time");
+LOCALIZE("Breakfast Time");
 ```
 
 ### Generating Translation Resources
@@ -55,9 +55,9 @@ _("Breakfast Time");
 
 * Move `locale_german.bin` to your project's `resources` directory.
 
-* Add the new `.bin` resource files to your project's `appinfo.json` file as 
-  shown in the 
-  [App Resources guide](https://developer.getpebble.com/guides/pebble-apps/display-and-animations/resources/#raw-resources). 
+* Add the new `.bin` resource files to your project's `appinfo.json` file as
+  shown in the
+  [App Resources guide](https://developer.getpebble.com/guides/pebble-apps/display-and-animations/resources/#raw-resources).
   For example, for the four language files in this project are added as shown
   below:
 
@@ -67,17 +67,17 @@ _("Breakfast Time");
     "type": "raw",
     "name": "LOCALE_ENGLISH",
     "file": "locale_english.bin"
-  }, 
+  },
   {
     "type": "raw",
     "name": "LOCALE_FRENCH",
     "file": "locale_french.bin"
-  }, 
+  },
   {
     "type": "raw",
     "name": "LOCALE_SPANISH",
     "file": "locale_spanish.bin"
-  }, 
+  },
   {
     "type": "raw",
     "name": "LOCALE_GERMAN",
