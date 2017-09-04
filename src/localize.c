@@ -16,8 +16,8 @@ void locale_init(void) {
 
   // Detect system locale
   //hard-coded for testing
-  const char* locale_str = "it";
-  // const char* locale_str = i18n_get_system_locale();
+  // const char* locale_str = "es_ES";
+  const char* locale_str = i18n_get_system_locale();
   ResHandle locale_handle = resource_get_handle(get_locale_resource_id(locale_str));
   int locale_size = resource_size(locale_handle);
 
@@ -62,26 +62,41 @@ char *locale_str(int hashval) {
 }
 
 static uint32_t get_locale_resource_id(const char* locale_str) {
-#ifdef SUPPORTS_FR
-  if (strncmp(locale_str, "fr", 2) == 0) {
-    return RESOURCE_ID_LOCALE_FRENCH;
+#ifdef SUPPORTS_FR_FR
+  if (strcmp(locale_str, "fr_FR") == 0) {
+    return RESOURCE_ID_LOCALE_FR_FR;
   }
 #endif
-#ifdef SUPPORTS_ES
-  if (strncmp(locale_str, "es", 2) == 0) {
-    return RESOURCE_ID_LOCALE_SPANISH;
+#ifdef SUPPORTS_ES_ES
+  if (strcmp(locale_str, "es_ES") == 0) {
+    return RESOURCE_ID_LOCALE_ES_ES;
   }
 #endif
-#ifdef SUPPORTS_DE
-  if (strncmp(locale_str, "de", 2) == 0) {
-    return RESOURCE_ID_LOCALE_GERMAN;
+#ifdef SUPPORTS_DE_DE
+  if (strcmp(locale_str, "de_DE") == 0) {
+    return RESOURCE_ID_LOCALE_DE_DE;
   }
 #endif
-#ifdef SUPPORTS_IT
-  if (strncmp(locale_str, "it", 2) == 0) {
-    return RESOURCE_ID_LOCALE_ITALIAN;
+#ifdef SUPPORTS_IT_IT
+  if (strcmp(locale_str, "it_IT") == 0) {
+    return RESOURCE_ID_LOCALE_IT_IT;
+  }
+#endif
+#ifdef SUPPORTS_PT_PT
+  if (strcmp(locale_str, "pt_PT") == 0) {
+    return RESOURCE_ID_LOCALE_PT_PT;
+  }
+#endif
+#ifdef SUPPORTS_EN_CN
+  if (strcmp(locale_str, "en_CN") == 0) {
+    return RESOURCE_ID_LOCALE_EN_CN;
+  }
+#endif
+#ifdef SUPPORTS_EN_TW
+  if (strcmp(locale_str, "en_TW") == 0) {
+    return RESOURCE_ID_LOCALE_EN_TW;
   }
 #endif
   // Fall back to English
-  return RESOURCE_ID_LOCALE_ENGLISH;
+  return RESOURCE_ID_LOCALE_EN_US;
 }
