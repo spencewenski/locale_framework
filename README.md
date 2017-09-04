@@ -11,15 +11,15 @@ text to display.
 
 ## Set Up Your Project
 
-- Download the project as a submodule
+1. Download the project as a submodule
 
 ```bash
 git submodule add https://github.com/spencewenski/locale_framework.git src/c/locale_framework
 ```
 
-- Add `#include "localize.h"` to any code files that require translation.
+2. Add `#include "localize.h"` to any code files that require translation.
 
-- Call `locale_init()` during app initialization:
+3. Call `locale_init()` during app initialization:
 
 ```c
 int main(void) {
@@ -29,13 +29,13 @@ int main(void) {
 }
 ```
 
-- For all strings that you wish to localize, add `LOCALIZE()` around them.
+4. For all strings that you wish to localize, add `LOCALIZE()` around them.
 
 ```c
 LOCALIZE("Bacon Pancakes");
 ```
 
-- For all locales that you support, add the respective compile flag to your wscipt.
+5. For all locales that you support, add the respective compile flag to your wscipt.
   The supported flags directly correspond with the [locales supported by Pebble](https://developer.pebble.com/guides/tools-and-resources/internationalization/#locales-supported-by-pebble):
     - SUPPORTS_EN_US
     - SUPPORTS_FR_FR
@@ -63,18 +63,29 @@ def build(ctx):
 
 ## Generate Translation Resources
 
+1. Generate locale_en_us.json and locale_en_us.bin from strings wrapped with LOCALIZE():
+
 ```bash
-# 1. Generate locale_en_us.json and locale_en_us.bin from strings wrapped with LOCALIZE()
 src/c/locale_framework/gen_dict.py src/c resources/i18n/locale_en_us.json
-# 2. Create a Spanish dictionary from the English dictionary
-cp resources/i18n/locale_en_us.json resources/i18n/locale_es_es.json
-# 3. Translate the Spanish dictionary
-# 4. generate the Spanish binary file
-src/c/locale_framework/dict2bin.py resources/i18n/locale_es_es.json
-# Repeat 2-4 for each language you want to support
 ```
 
-- Add the new `.bin` resource files to your project's `package.json` as
+2. Create a Spanish dictionary from the English dictionary:
+
+```bash
+cp resources/i18n/locale_en_us.json resources/i18n/locale_es_es.json
+```
+
+3. Translate the Spanish dictionary.
+
+4. Generate the Spanish binary file:
+
+```bash
+src/c/locale_framework/dict2bin.py resources/i18n/locale_es_es.json
+```
+
+5. Repeat 2-4 for each language you want to support
+
+6. Add the new `.bin` resource files to your project's `package.json` as
   [raw resrouces](https://developer.getpebble.com/guides/pebble-appsdisplay-and-animations/resources/#raw-resources).
   The full list of supported resource ids is:
     - LOCALE_EN_US
@@ -102,7 +113,7 @@ Example locale entries in the `package.json`:
 ]
 ```
 
-- Compile your application and install!
+7. Compile your application and install!
 
 You can easily test your translations by commenting line 20 and uncommenting
 line 19 of `localize.c`, replacing "es" with a locale you are translating.
