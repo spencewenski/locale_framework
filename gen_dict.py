@@ -51,10 +51,16 @@ def main():
     code_dir = sys.argv[1]
     output_filename = sys.argv[2]
 
-    hash_dict = gen_loc_dict(code_dir) 
+    hash_dict = gen_loc_dict(code_dir)
     json_dict = {str(key) : value for (key, value) in hash_dict.iteritems()}
     json.dump(json_dict, open(output_filename, "wb"), indent=2, sort_keys=True)
     print("%s now has %d entries\n" % (output_filename, len(hash_dict)))
+    # Add a 'generated file' warning to the output file
+    data = ""
+    with open(output_filename, 'r') as original:
+        data = original.read()
+    with open(output_filename, 'w') as modified:
+        modified.write("// This is a generated file. Do not modify.\n" + data + "\n")
     #create binary resource loadable as a pebble dictionary
     with open(output_filename.replace('.json', '.bin'), 'wb') as output_bin:
       output_bin.write(struct.pack('I', len(hash_dict))) #count of entries
