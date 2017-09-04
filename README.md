@@ -86,9 +86,8 @@ src/c/locale_framework/dict2bin.py resources/i18n/locale_es_es.json
 5. Repeat 2-4 for each language you want to support
 
 6. Add the new `.bin` resource files to your project's `package.json` as
-  [raw resrouces](https://developer.getpebble.com/guides/pebble-appsdisplay-and-animations/resources/#raw-resources).
-  The full list of supported resource ids is:
-    - LOCALE_EN_US
+  raw resrouces. The full list of supported resource ids is:    
+    - LOCALE_EN_US
     - LOCALE_FR_FR
     - LOCALE_ES_ES
     - LOCALE_DE_DE
