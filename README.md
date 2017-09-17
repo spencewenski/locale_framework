@@ -2,7 +2,7 @@ Locale Framework
 ================
 
 Forked from https://github.com/pebble-hacks/locale_framework and setup as a
-library for use as a submodule in other pebble project.
+library for use as a submodule in other pebble projects.
 
 Minimal framework to support locale features in Pebble apps, using
 [`i18n_get_system_locale()`](http://developer.getpebble.com/docs/c/group___internationalization.html)
@@ -63,7 +63,7 @@ def build(ctx):
 
 ## Generate Translation Resources
 
-1. Generate locale_en_us.json and locale_en_us.bin from strings wrapped with LOCALIZE():
+1. Generate locale_en_us.json and locale_en_us.bin from strings wrapped with `LOCALIZE()`:
 
 ```bash
 src/c/locale_framework/gen_dict.py src/c resources/i18n/locale_en_us.json
