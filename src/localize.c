@@ -15,7 +15,6 @@ static char* s_dict_buffer = NULL;
 static uint32_t get_locale_resource_id(const char* locale_str);
 
 void locale_init() {
-
   // Detect system locale
   //hard-coded for testing
   // const char* locale_str = "es_ES";
@@ -56,6 +55,7 @@ void locale_init() {
 
 void local_deinit() {
   free(s_dict_buffer);
+  s_dict_buffer = NULL;
 }
 
 char *locale_str(int hashval) {
