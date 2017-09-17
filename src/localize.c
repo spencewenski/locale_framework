@@ -1,6 +1,8 @@
 #include <pebble.h>
 
-DictionaryIterator s_locale_dict;
+static DictionaryIterator s_locale_dict;
+
+static char* s_dict_buffer = NULL;
 
 /**
  * Get the resource id for the file that contains the translated strings for
@@ -12,7 +14,7 @@ DictionaryIterator s_locale_dict;
  */
 static uint32_t get_locale_resource_id(const char* locale_str);
 
-void locale_init(void) {
+void locale_init() {
 
   // Detect system locale
   //hard-coded for testing
@@ -32,8 +34,8 @@ void locale_init(void) {
   } locale_info;
 
   int dict_buffer_size = locale_size + 7 * locale_entries; //7 byte header per item
-  char *dict_buffer = malloc(dict_buffer_size);
-  dict_write_begin(&s_locale_dict, (uint8_t*)dict_buffer, dict_buffer_size);
+  s_dict_buffer = malloc(dict_buffer_size);
+  dict_write_begin(&s_locale_dict, (uint8_t*)s_dict_buffer, dict_buffer_size);
 
   for (int i = 0; i < locale_entries; i++) {
     resource_offset += resource_load_byte_range(locale_handle,
@@ -50,6 +52,10 @@ void locale_init(void) {
   }
 
   dict_write_end(&s_locale_dict);
+}
+
+void local_deinit() {
+  free(s_dict_buffer);
 }
 
 char *locale_str(int hashval) {
