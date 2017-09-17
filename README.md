@@ -22,20 +22,36 @@ git submodule add https://github.com/spencewenski/locale_framework.git src/c/loc
 3. Call `locale_init()` during app initialization:
 
 ```c
-int main(void) {
+int main() {
     // Init locale framework
     locale_init();
     // Other app setup code
+    // ...
+    app_event_loop();
+    // ...
 }
 ```
 
-4. For all strings that you wish to localize, add `LOCALIZE()` around them.
+4. Call `locale_deinit()` during app tear down:
+```c
+int main() {
+    // ...
+    app_event_loop();
+    // Free memory allocated by the locale framework
+    locale_deinit();
+    // Other app tear down code
+    // ...
+}
+```
+
+
+5. For all strings that you wish to localize, add `LOCALIZE()` around them.
 
 ```c
 LOCALIZE("Bacon Pancakes");
 ```
 
-5. For all locales that you support, add the respective compile flag to your wscipt.
+6. For all locales that you support, add the respective compile flag to your wscipt.
 The supported flags directly correspond with the [locales supported by Pebble](https://developer.pebble.com/guides/tools-and-resources/internationalization/#locales-supported-by-pebble):
     - SUPPORTS_EN_US
     - SUPPORTS_FR_FR
