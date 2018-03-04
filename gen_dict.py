@@ -53,7 +53,7 @@ def main():
 
     hash_dict = gen_loc_dict(code_dir)
     json_dict = {str(key) : value for (key, value) in hash_dict.iteritems()}
-    json.dump(json_dict, open(output_filename, "wb"), indent=2, sort_keys=True)
+    json.dump(json_dict, open(output_filename, "wb"), indent=2, sort_keys=True, separators=(',', ':'))
     print("%s now has %d entries\n" % (output_filename, len(hash_dict)))
     # Add a 'generated file' warning to the output file
     data = ""
